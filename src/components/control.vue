@@ -20,6 +20,7 @@
 import { defineComponent, reactive, toRefs } from "vue";
 
 export default defineComponent({
+  emits:['control'],
   props: {
     borderColor: {
       type: String,

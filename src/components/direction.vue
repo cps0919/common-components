@@ -27,6 +27,7 @@ interface DataProps {}
 
 export default defineComponent({
   name: "direction-control",
+  emits:['direction'],
   props: {
     bgColor: {
       type: String,

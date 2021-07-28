@@ -1,8 +1,8 @@
-import Progress from '../components/progress.vue'
+import Progress from '../components/progress-1.vue'
 
 export default {
     component: Progress,
-    title: 'Dashboard/progress',
+    title: 'Dashboard/progress/progress-1',
     parameters: {
         layout: 'centered'
     },
@@ -21,4 +21,4 @@ export const One = (args) => ({
     },
     template: '<Progress v-bind="args"></Progress>'
 })
-One.storyName = 'progress'
+One.storyName = 'progress-1'

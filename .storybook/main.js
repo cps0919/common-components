@@ -7,7 +7,8 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-docs",
+    "@storybook/addon-actions",
     '@storybook/addon-storysource',//源码story
-    'storybook-dark-mode'//主题
+    'storybook-dark-mode',//主题
   ]
 }

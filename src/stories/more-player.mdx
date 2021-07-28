@@ -1,0 +1,36 @@
+<!--- Checkbox.stories.mdx -->
+
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import Checkbox from '../components/more-player.vue';
+
+<Meta title="MDX/Checkbox" component={Checkbox} />
+
+# Checkbox
+
+With `MDX`, we can define a story for `Checkbox` right in the middle of our
+Markdown documentation.
+
+<!--- This is your Story template function, shown here in React -->
+
+export const Template = (args) => <Checkbox {...args} />
+
+<Canvas>
+  <Story id="1" name="Unchecked" args={{ 
+      label: 'Unchecked'
+    }}>
+    {Template.bind({})}
+   </Story>
+  <Story id="2" name="Checked" args={{ 
+      label: 'Unchecked', 
+      checked: true 
+    }}>
+    {Template.bind({})}
+   </Story>
+  <Story id="3" name="Secondary" args={{
+    label: 'Secondary', 
+    checked: true, 
+    appearance: 'secondary'
+  }}>
+    {Template.bind({})}
+   </Story>
+</Canvas>

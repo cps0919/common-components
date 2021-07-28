@@ -1,6 +1,5 @@
 import MorePlayer from '../components/more-player.vue'
 
-
 export default {
     component: MorePlayer,
     title: "Video/more-player",
@@ -12,7 +11,9 @@ export default {
         borderColor: { control: { type: 'color', options: 'presetColors' } },
         activeColor: { control: { type: 'color', options: 'presetColors' } },
         equipment: { description: '播放视频时的设备信息', control: { type: 'object' } },
+        videoClick:{description:'emit事件：{num:number,active:number,info:object}'}
     },
+
 }
 const Template = (args) => ({
     components: { MorePlayer },
@@ -29,6 +30,12 @@ One.args = {
     model: 1
 }
 One.storyName = "one-grid"
+One.parameters = {
+    design: {
+        type: 'text',
+        text: 'sdfsf'
+    },
+}
 export const Four = Template.bind({})
 Four.args = {
     height: '270px',

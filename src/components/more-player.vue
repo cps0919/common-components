@@ -53,6 +53,9 @@ interface StateProps {
 }
 export default defineComponent({
   name: "more-player",
+  emits: {
+    videoClick: (val: {num:number,active:number,info:any}) => {},
+  },
   props: {
     backgroundColor: {
       type: String,
