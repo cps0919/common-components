@@ -7,7 +7,8 @@ export default {
         layout: 'centered'
     },
     argTypes: {
-        data: { control: { type: 'object' } },
+        title: { control: { type: 'text' } },
+        progress: { control: { type: 'number' } },
         height: { control: { type: 'text' } },
         width: { control: { type: 'text' } },
         color: { control: { type: 'color', options: 'presetColors' } },

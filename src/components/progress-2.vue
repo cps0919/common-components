@@ -1,40 +1,41 @@
 <template>
   <div class="progress" :style="[contentStyleFuc]">
     <div class="progress_bg" :style="[progressStyleComputed]">
-      <span class="num" v-if="progressVisible">{{
-        `${100 - Number(data.progress)}%`
-      }}</span>
+      <span class="num" v-if="progressVisible">{{ `${data.progress}%` }}</span>
     </div>
     <div class="title" v-if="titleVisible">标题内容</div>
   </div>
 </template>
 <script lang='ts'>
-import { computed, defineComponent, PropType, reactive, toRefs } from "vue";
-interface DataProps {
-  name: string;
-  progress: number;
-}
+import { computed, defineComponent, reactive, toRefs, PropType } from "vue";
 export default defineComponent({
   props: {
     height: {
       type: String,
-      default: 40,
+      default: "30px",
     },
     width: {
       type: String,
-      default: 200,
+      default: "500px",
     },
     bgColor: {
       type: String,
       default: "rgba(44, 62, 80, 0.7)",
     },
     progressBgColor: {
-      type: String,
-      default: "rgb(103, 194, 58)",
+      type: Object as PropType<{ success: string; primary: string }>,
+      default: () => ({
+        primary: "#5bc0de",
+        success: "rgb(103, 194, 58)",
+      }),
     },
-    data: {
-      type: Object as PropType<DataProps>,
-      default: () => ({ name: "", progress: 50 }),
+    title: {
+      type: String,
+      default: "标题内容",
+    },
+    progress: {
+      type: Number,
+      default: 60,
     },
     progressVisible: {
       type: Boolean,
@@ -42,7 +43,7 @@ export default defineComponent({
     },
     titleVisible: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     color: {
       type: String,
@@ -51,7 +52,10 @@ export default defineComponent({
   },
   setup(props) {
     const state = reactive({
-      data: props.data,
+      data: {
+        title: props.title,
+        progress: props.progress,
+      },
       progressVisible: props.progressVisible,
       titleVisible: props.titleVisible,
     });
@@ -62,9 +66,13 @@ export default defineComponent({
       width: props.width,
     }));
     const progressStyleComputed = computed(() => {
-      let left = `-${100 - Number(props.data.progress)}%`;
+      let left = `-${100 - Number(props.progress)}%`;
+      let backgroundColor =
+        props.progress == 100
+          ? props.progressBgColor.success
+          : props.progressBgColor.primary;
       return {
-        backgroundColor: props.progressBgColor,
+        backgroundColor,
         left,
       };
     });
@@ -102,27 +110,40 @@ export default defineComponent({
     transparent
   );
   /* background-color: rgb(103, 194, 58); */
-  background-size: 15px 15px;
+  background-size: 20px 20px;
   height: 100%;
   width: 100%;
   position: absolute;
   z-index: 1;
   animation-name: progressAnimation;
-  animation-duration: 1s;
+  animation-duration: 10s;
   animation-iteration-count: infinite;
 }
 @keyframes progressAnimation {
   form {
     background-position-x: 10px;
   }
+  20% {
+    background-position-x: 20px;
+  }
+  40% {
+    background-position-x: 40px;
+  }
+  60% {
+    background-position-x: 60px;
+  }
+  80% {
+    background-position-x: 80px;
+  }
   to {
-    background-position-x: 10px;
+    background-position-x: 100px;
   }
 }
 .progress_bg .num {
   position: absolute;
-  right: -25px;
-  top: 5%;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
   font-size: 0.5em;
 }
 
