@@ -27,3 +27,6 @@ export const One = (args) => ({
     template: '<Progress v-bind="args"></Progress>'
 })
 One.storyName = 'progress-2'
+One.args={
+    progress:60
+}

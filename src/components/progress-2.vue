@@ -3,6 +3,7 @@
     <div class="progress_bg" :style="[progressStyleComputed]">
       <span class="num" v-if="progressVisible">{{ `${data.progress}%` }}</span>
     </div>
+
     <div class="title" v-if="titleVisible">标题内容</div>
   </div>
 </template>
@@ -35,7 +36,7 @@ export default defineComponent({
     },
     progress: {
       type: Number,
-      default: 60,
+      default: 0,
     },
     progressVisible: {
       type: Boolean,
@@ -73,7 +74,7 @@ export default defineComponent({
           : props.progressBgColor.primary;
       return {
         backgroundColor,
-        left,
+        transform: `translateX(${left})`,
       };
     });
     return {
@@ -113,12 +114,13 @@ export default defineComponent({
   background-size: 20px 20px;
   height: 100%;
   width: 100%;
-  position: absolute;
   z-index: 1;
   animation-name: progressAnimation;
   animation-duration: 10s;
   animation-iteration-count: infinite;
+  transform: translateX(0);
 }
+
 @keyframes progressAnimation {
   form {
     background-position-x: 10px;
